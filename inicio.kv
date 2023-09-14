@@ -1,0 +1,138 @@
+
+MDScreen:
+    name: 'inicio'
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+    
+    MDBottomNavigation:
+        panel_color:"lightgrey"
+        selected_color_background: "orange"
+        text_color_active: "black"
+
+        MDBottomNavigationItem:
+            name: 'home'
+            text: 'Inicio'
+            icon: 'home'
+
+            MDLabel:
+                id: bienvenido
+                text:''
+                halign: 'center'
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.login()
+
+            MDLabel:
+                text:"Atras"
+                font_size: "18sp"
+                pos_hint: {"center_x": .615 , "center_y": .95}
+
+            Image:
+                source: "assets/Remis-Point.png"
+                size_hint: .50, .50
+                pos_hint: {"center_x": .20, "center_y": .85}
+
+            MDLabel:
+                text:"REMIS POINT"
+                pos_hint: {"center_x": .849, "center_y": .849}
+                halling: "center"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                font_size: "30sp"    
+
+        MDBottomNavigationItem:
+            name: 'buscar'
+            text: 'Buscar'
+            icon: 'magnify'
+
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.login()
+
+            MDLabel:
+                text:"Atras"
+                font_size: "18sp"
+                pos_hint: {"center_x": .615 , "center_y": .95}
+
+            Image:
+                source: "assets/Remis-Point.png"
+                size_hint: .50, .50
+                pos_hint: {"center_x": .20, "center_y": .85}
+
+            MDLabel:
+                text:"Calcular Distancias"
+                pos_hint: {"center_x": .849, "center_y": .849}
+                halling: "center"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                font_size: "22sp"
+            
+            MDTextField:
+                id: salida
+                hint_text: "Ingresa dir. de salida"
+                helper_text: ""
+                helper_text_mode: "persistent"
+                pos_hint: {"center_x": .5 , "center_y": .52}
+
+                size_hint_x: .85
+                line_color_focus: 0,0,0,1
+
+
+            MDTextField:
+                id: llegada
+                hint_text: "Ingrese Destino"
+                helper_text: ""
+                helper_text_mode: "persistent"
+                pos_hint: {"center_x": .5 , "center_y": .42}
+                size_hint_x: .85
+                line_color_focus: 0,0,0,1
+
+            MDFlatButton:
+                text: "Calcular"
+                size_hint: .55, .08
+                pos_hint:{"center_x": .50, "center_y": 0.15}
+                on_press: app.calculo()
+                canvas.before:
+                    Color:
+                        rgb: 252/255, 127/255, 65/255, 255
+                    RoundedRectangle:
+                        size: self.size
+                        pos:self.pos
+                        radius: [6]
+
+        MDBottomNavigationItem:
+            name: 'mapa'
+            text: 'Mapa'
+            icon: 'google-maps'
+
+
+            MDLabel:
+                text:'Mapa'
+                halign: 'center'
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.login()
+
+            MDLabel:
+                text:"Atras"
+                font_size: "18sp"
+                pos_hint: {"center_x": .615 , "center_y": .95}
+
+            Image:
+                source: "assets/Remis-Point.png"
+                size_hint: .50, .50
+                pos_hint: {"center_x": .20, "center_y": .85}
+
+            MDLabel:
+                text:"REMIS POINT"
+                pos_hint: {"center_x": .849, "center_y": .849}
+                halling: "center"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                font_size: "30sp"    
