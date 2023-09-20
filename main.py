@@ -1,14 +1,15 @@
-#IMPORTACIONES DE KIVY
-from kivy.uix.screenmanager import ScreenManager, NoTransition
-from kivymd.app import MDApp
+#IMPORTACIONES DE KIVY 
+from kivy.uix.screenmanager import ScreenManager
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.properties import ObjectProperty
-from kivymd.uix.bottomnavigation import bottomnavigation
+import re
+
+#IMPORTACION KIVYMD
+
+from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-import re
 
 #IMPORTACION BSD
 
@@ -26,7 +27,6 @@ Maps = googlemaps.Client(key=APIKey)
 
 Window.size = (300,580)
 
-
 class LoginApp(MDApp):
     dialog = None #
     Label = None
@@ -40,29 +40,33 @@ class LoginApp(MDApp):
         screen_manager.add_widget(Builder.load_file("inicio.kv"))
         return screen_manager
     
-    #TRANSICION DE PANTALLA DE INICIO
     def on_start(self):
+        #TRANSICION DE PANTALLA DE INICIO'
         Clock.schedule_once(self.login, 3)
 
-    #PANTALLA DE INICIO
     def login (self,*args):
+        #PANTALLA DE INICIO
         screen_manager.current = "login"
 
-    #PANTALLA DE REGISTRO
     def registro(self,*args):
+        #PANTALLA DE REGISTRO
         screen_manager.current = "registro"
 
-    #FUNCION PARA COMPARAR LOS VALORES DE LA PANTALLA CON LA BASE DE DATOS
     def completo (self,*args):
+    #FUNCION PARA COMPARAR LOS VALORES DE LA PANTALLA CON LA BASE DE DATOS
         email= screen_manager.get_screen('login').ids['mail'].text
         password = screen_manager.get_screen('login').ids['password'].text
         busca = f"SELECT email, password FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
+        c_nombre = f"SELECT Nombre FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
         miCursor.execute(busca)
         if miCursor.fetchone():
+            miCursor.execute(c_nombre)
+            nombrelogin = miCursor.fetchone()
+            screen_manager.get_screen('inicio').ids['bienvenido'].text = f'Bienvenido/a {nombrelogin}'
             screen_manager.current = "inicio"
 
-    #FUNCION PARA EL BOTON REGISTRO DE LA PANTALLA REGISTRO Y AGREGADO A LA BASE DE DATOS
     def nuevo_usuario (self, *args):
+    #'FUNCION PARA EL BOTON REGISTRO DE LA PANTALLA REGISTRO Y AGREGADO A LA BASE DE DATOS'
         user = []
         nombre = screen_manager.get_screen('registro').ids['input_name'].text
         telefono = screen_manager.get_screen('registro').ids['input_phone'].text
@@ -151,8 +155,8 @@ class LoginApp(MDApp):
                 )
             self.dialog.open()
 
-    #FUNCION PARA EL BOTON DE LA SCREEN INICIO QUE CALCULA LAS DISTANCIAS
     def calculo(self):
+    #'FUNCION PARA EL BOTON DE LA SCREEN INICIO QUE CALCULA LAS DISTANCIAS'
         salida= screen_manager.get_screen('inicio').ids['salida'].text
         llegada= screen_manager.get_screen('inicio').ids['llegada'].text
         if salida != "" and llegada != "":
