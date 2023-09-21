@@ -1,3 +1,4 @@
+#: import SlideTransition kivy.uix.screenmanager
 MDScreen:
     name: 'login'
     MDFloatLayout:
@@ -49,13 +50,17 @@ MDScreen:
             text: "Registrar"
             size_hint: .55, .08
             pos_hint:{"center_x": .50, "center_y": 0.15}
-            on_press: app.registro()
+            on_press: 
+                app.registro()
+                root.manager.transition.direction = "left"
 
         MDFlatButton:
             text: "Ingresar"
             size_hint: .79, .08
             pos_hint:{"center_x": .50, "center_y": 0.25}
-            on_press: app.completo()
+            on_release: 
+                app.completo()
+                root.manager.transition.direction = "left"
     
             canvas.before:
                 Color:

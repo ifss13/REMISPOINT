@@ -1,3 +1,4 @@
+#: import SlideTransition kivy.uix.screenmanager
 MDScreen:
     name: 'registro'
     MDFloatLayout:
@@ -7,7 +8,9 @@ MDScreen:
             icon: "chevron-left"
             user_font_size: "35sp"
             pos_hint: {"center_y": .95}
-            on_press: app.login()
+            on_press: 
+                app.login()
+                root.manager.transition.direction = "right"
 
         MDLabel:
             text:"Atras"
@@ -84,7 +87,9 @@ MDScreen:
             text: "Registar"
             size_hint: .79, .08
             pos_hint:{"center_x": .50, "center_y": 0.13}
-            on_press: app.nuevo_usuario()
+            on_press: 
+                app.nuevo_usuario()
+                root.manager.transition.direction = "left"
 
             canvas.before:
                 Color:

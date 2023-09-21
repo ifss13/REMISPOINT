@@ -34,10 +34,11 @@ class LoginApp(MDApp):
         global screen_manager
         screen_manager = ScreenManager()
         #self.manager = ScreenManager(transition=NoTransition())
-        screen_manager.add_widget(Builder.load_file("pre-splash.kv"))
-        screen_manager.add_widget(Builder.load_file("login.kv"))
-        screen_manager.add_widget(Builder.load_file("registro.kv"))
-        screen_manager.add_widget(Builder.load_file("inicio.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/pre-splash.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/login.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/registro.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/remises.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/inicio.kv"))
         return screen_manager
     
     def on_start(self):
@@ -51,6 +52,9 @@ class LoginApp(MDApp):
     def registro(self,*args):
         #PANTALLA DE REGISTRO
         screen_manager.current = "registro"
+    
+    def remises(self,*args):
+        screen_manager.current = "remises"
 
     def completo (self,*args):
     #FUNCION PARA COMPARAR LOS VALORES DE LA PANTALLA CON LA BASE DE DATOS
@@ -175,6 +179,11 @@ class LoginApp(MDApp):
                 ]
             )
             self.dialog.open()
+
+    def inicio(self):
+        screen_manager.current="inicio"
+
+
 
     def close(self,*args):
         self.dialog.dismiss()               

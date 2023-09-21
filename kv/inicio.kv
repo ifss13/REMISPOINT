@@ -1,4 +1,4 @@
-
+#: import SlideTransition kivy.uix.screenmanager
 MDScreen:
     name: 'inicio'
     MDFloatLayout:
@@ -23,7 +23,11 @@ MDScreen:
                 icon: "chevron-left"
                 user_font_size: "35sp"
                 pos_hint: {"center_y": .95}
-                on_release: app.login()
+                on_release: 
+                    root.manager.transition.direction = "right"
+                    app.login()
+                    
+
 
             MDLabel:
                 text:"Atras"
@@ -58,6 +62,45 @@ MDScreen:
                 line_color: "orange"
                 theme_icon_color: "Custom"
                 pos_hint: {"center_x": .50, "center_y": .50}
+                size_hint: 0.9,0.05
+                on_press: 
+                    app.remises()
+                    root.manager.transition.direction = "left"
+
+            MDRectangleFlatIconButton:
+                icon: "progress-close"
+                theme_icon_color: "Custom"
+                icon_color: "red"
+                text: "Remises Avenida"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                line_color: "orange"
+                theme_icon_color: "Custom"
+                pos_hint: {"center_x": .50, "center_y": .40}
+                size_hint: 0.9,0.05
+            
+            MDRectangleFlatIconButton:
+                icon: "progress-close"
+                theme_icon_color: "Custom"
+                icon_color: "red"
+                text: "Express"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                line_color: "orange"
+                theme_icon_color: "Custom"
+                pos_hint: {"center_x": .50, "center_y": .30}
+                size_hint: 0.9,0.05
+            
+            MDRectangleFlatIconButton:
+                icon: "progress-close"
+                theme_icon_color: "Custom"
+                icon_color: "red"
+                text: "Remises Sarmiento"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                line_color: "orange"
+                theme_icon_color: "Custom"
+                pos_hint: {"center_x": .50, "center_y": .20}
                 size_hint: 0.9,0.05
 
         MDBottomNavigationItem:
