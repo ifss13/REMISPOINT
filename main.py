@@ -25,6 +25,7 @@ API = open("Google Maps Platform API Key.txt","r")
 APIKey = API.read()
 Maps = googlemaps.Client(key=APIKey)
 
+#Variables y otros
 Window.size = (300,580)
 
 class LoginApp(MDApp):
@@ -62,12 +63,33 @@ class LoginApp(MDApp):
         password = screen_manager.get_screen('login').ids['password'].text
         busca = f"SELECT email, password FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
         c_nombre = f"SELECT Nombre FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
+        c_email = f"SELECT email FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
+        c_tel=  f"SELECT Telefono FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
         miCursor.execute(busca)
         if miCursor.fetchone():
             miCursor.execute(c_nombre)
             nombrelogin = miCursor.fetchone()
             screen_manager.get_screen('inicio').ids['bienvenido'].text = f'Bienvenido/a {nombrelogin}'
+            screen_manager.get_screen('inicio').ids['l_nombre'].text =  f'{nombrelogin}'
+            miCursor.execute(c_email)
+            mail = miCursor.fetchone()
+            screen_manager.get_screen('inicio').ids['email'].text = f'{mail}'
+            miCursor.execute(c_tel)
+            tel = miCursor.fetchone()
+            screen_manager.get_screen('inicio').ids['telefono'].text = f'{tel}'
             screen_manager.current = "inicio"
+        else:
+            self.dialog = MDDialog(
+                    title = 'Contraseña Incorrecta',
+                    text= 'El usuario o la contraseña no son correctos',
+                    buttons = [
+                        MDFlatButton(
+                            text= "Ok", text_color= self.theme_cls.accent_color,
+                            on_release = self.close,
+                            )
+                        ]
+                    )
+            self.dialog.open()
 
     def nuevo_usuario (self, *args):
     #'FUNCION PARA EL BOTON REGISTRO DE LA PANTALLA REGISTRO Y AGREGADO A LA BASE DE DATOS'
@@ -167,23 +189,14 @@ class LoginApp(MDApp):
             Distancia=Maps.directions(salida,llegada)
             DistanciaKM = (Distancia[0]['legs'][0]['distance']['text'])
             HorasMinDuracion= (Distancia[0]['legs'][0]['duration']['text'])
-            #if not self.dialog:
-            self.dialog = MDDialog(
-                title = 'Viaje',
-                text= f'La distanncia entre {salida} y {llegada} es de {DistanciaKM} y la duracion del viaje es de {HorasMinDuracion} y el precio es de $!',
-                buttons = [
-                    MDFlatButton(
-                        text= "Ok", text_color= self.theme_cls.accent_color,
-                        on_release = self.close,
-                    )
-                ]
-            )
-            self.dialog.open()
+            screen_manager.get_screen('inicio').ids['l_salida'].text = f'{salida}'
+            screen_manager.get_screen('inicio').ids['l_llegada'].text = f'{llegada}'
+            screen_manager.get_screen('inicio').ids['l_distancia'].text = f'{DistanciaKM}'
+            screen_manager.get_screen('inicio').ids['l_duracion'].text = f'{HorasMinDuracion}'
+            
 
     def inicio(self):
         screen_manager.current="inicio"
-
-
 
     def close(self,*args):
         self.dialog.dismiss()               

@@ -1,3 +1,4 @@
+#:kivy 2.2.1
 #: import SlideTransition kivy.uix.screenmanager
 MDScreen:
     name: 'inicio'
@@ -137,7 +138,7 @@ MDScreen:
                 hint_text: "Ingresa dir. de salida"
                 helper_text: ""
                 helper_text_mode: "persistent"
-                pos_hint: {"center_x": .5 , "center_y": .52}
+                pos_hint: {"center_x": .5 , "center_y": .70}
 
                 size_hint_x: .85
                 line_color_focus: 0,0,0,1
@@ -148,14 +149,14 @@ MDScreen:
                 hint_text: "Ingrese Destino"
                 helper_text: ""
                 helper_text_mode: "persistent"
-                pos_hint: {"center_x": .5 , "center_y": .42}
+                pos_hint: {"center_x": .5 , "center_y": .60}
                 size_hint_x: .85
                 line_color_focus: 0,0,0,1
 
             MDFlatButton:
                 text: "Calcular"
                 size_hint: .55, .08
-                pos_hint:{"center_x": .50, "center_y": 0.15}
+                pos_hint:{"center_x": .50, "center_y": 0.45}
                 on_press: app.calculo()
                 canvas.before:
                     Color:
@@ -164,6 +165,66 @@ MDScreen:
                         size: self.size
                         pos:self.pos
                         radius: [6]
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .35}
+                
+                MDLabel:
+                    text:"Salida"
+                    id: l_salida
+                    font_size: "16sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: l_llegada
+                    text:"Llegada"
+                    font_size: "16sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .25}
+                
+                MDLabel:
+                    text:"Distancia"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: l_distancia
+                    text:""
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+            
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .15}
+                
+                MDLabel:
+                    text:"Precio"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: l_duracion
+                    text:""
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+            
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .05}
+                
+                MDLabel:
+                    text:"Precio"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: l_precio
+                    text:"$"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
 
         MDBottomNavigationItem:
             name: 'info'
@@ -193,3 +254,89 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 255,255,255,1
                 font_size: "30sp"
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .65}
+                
+                MDLabel:
+                    text:"Nombre y Apellido"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: l_nombre
+                    text:"name_apell"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "gray"
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .55}
+                
+                MDLabel:
+                    text:"email"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: email
+                    text:"db_mail"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "gray"
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .45}
+                
+                MDLabel:
+                    text:"Telefono"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id:telefono
+                    text:"tel"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "gray"
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .35}
+                
+                MDLabel:
+                    text:"Localidad"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: localidad
+                    text:"loc"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "gray"
+
+            MDCard:
+                size_hint: 0.8, 0.10
+                pos_hint: {"center_x": .50, "center_y": .25}
+                
+                MDLabel:
+                    text:"Cuenta"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .70, "center_y": .5}
+                
+                MDLabel:
+                    id: tipo
+                    text:"cliente/chofer"
+                    font_size: "12sp"
+                    pos_hint: {"center_x": .3, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "gray"
+
