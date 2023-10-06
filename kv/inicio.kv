@@ -68,42 +68,7 @@ MDScreen:
                     app.remises()
                     root.manager.transition.direction = "left"
 
-            MDRectangleFlatIconButton:
-                icon: "progress-close"
-                theme_icon_color: "Custom"
-                icon_color: "red"
-                text: "Remises Avenida"
-                theme_text_color: "Custom"
-                text_color: 255,255,255,1
-                line_color: "orange"
-                theme_icon_color: "Custom"
-                pos_hint: {"center_x": .50, "center_y": .40}
-                size_hint: 0.9,0.05
             
-            MDRectangleFlatIconButton:
-                icon: "progress-close"
-                theme_icon_color: "Custom"
-                icon_color: "red"
-                text: "Express"
-                theme_text_color: "Custom"
-                text_color: 255,255,255,1
-                line_color: "orange"
-                theme_icon_color: "Custom"
-                pos_hint: {"center_x": .50, "center_y": .30}
-                size_hint: 0.9,0.05
-            
-            MDRectangleFlatIconButton:
-                icon: "progress-close"
-                theme_icon_color: "Custom"
-                icon_color: "red"
-                text: "Remises Sarmiento"
-                theme_text_color: "Custom"
-                text_color: 255,255,255,1
-                line_color: "orange"
-                theme_icon_color: "Custom"
-                pos_hint: {"center_x": .50, "center_y": .20}
-                size_hint: 0.9,0.05
-
         MDBottomNavigationItem:
             name: 'buscar'
             text: 'Buscar'
@@ -201,7 +166,7 @@ MDScreen:
                 pos_hint: {"center_x": .50, "center_y": .15}
                 
                 MDLabel:
-                    text:"Precio"
+                    text:"Tiempo"
                     font_size: "12sp"
                     pos_hint: {"center_x": .70, "center_y": .5}
                 
@@ -311,12 +276,12 @@ MDScreen:
                 pos_hint: {"center_x": .50, "center_y": .35}
                 
                 MDLabel:
-                    text:"Localidad"
+                    text:"Direccion"
                     font_size: "12sp"
                     pos_hint: {"center_x": .70, "center_y": .5}
                 
                 MDLabel:
-                    id: localidad
+                    id: direccion
                     text:"loc"
                     font_size: "12sp"
                     pos_hint: {"center_x": .3, "center_y": .5}

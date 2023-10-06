@@ -11,10 +11,11 @@ from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 
+
 #IMPORTACION BSD
 
-import sqlite3
-miConexion = sqlite3.connect("bsd_remispoing.sqlite3")
+import psycopg2
+miConexion = psycopg2.connect(host="localhost", database="RemisPoint", user="postgres", password="admin", port="5432")
 miCursor = miConexion.cursor()
 
 #IMPORTACION DE GOOGLE MAPS
@@ -52,6 +53,15 @@ class LoginApp(MDApp):
 
     def registro(self,*args):
         #PANTALLA DE REGISTRO
+        busca = 'SELECT nombre FROM public."Localidad"'
+        miCursor.execute(busca)
+        valores = [row[0] for row in miCursor.fetchall()]
+        lista_spinner = screen_manager.get_screen('registro').ids['input_loc']
+        lista_spinner.values = valores
+        #for valor in valores:
+            #valor = str(valor)
+            #valor = valor.strip("()").replace("'", "").replace(",", "")
+            #screen_manager.get_screen('registro').ids['input_loc'].values =  valor
         screen_manager.current = "registro"
     
     def remises(self,*args):
@@ -61,22 +71,38 @@ class LoginApp(MDApp):
     #FUNCION PARA COMPARAR LOS VALORES DE LA PANTALLA CON LA BASE DE DATOS
         email= screen_manager.get_screen('login').ids['mail'].text
         password = screen_manager.get_screen('login').ids['password'].text
-        busca = f"SELECT email, password FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
-        c_nombre = f"SELECT Nombre FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
-        c_email = f"SELECT email FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
-        c_tel=  f"SELECT Telefono FROM Cliente WHERE email = '{email}' AND password = '{password}'; "
+        busca = f'SELECT correo, password FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
+        c_nombre = f'SELECT Nombre FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
+        c_email = f'SELECT correo FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
+        c_tel=  f'SELECT Telefono FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
+        c_direc = f'SELECT direccion FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
         miCursor.execute(busca)
         if miCursor.fetchone():
+            #NOMBRE
             miCursor.execute(c_nombre)
             nombrelogin = miCursor.fetchone()
+            nombrelogin = str(nombrelogin)
+            nombrelogin = nombrelogin.strip("()").replace("'", "").replace(",", "")
             screen_manager.get_screen('inicio').ids['bienvenido'].text = f'Bienvenido/a {nombrelogin}'
             screen_manager.get_screen('inicio').ids['l_nombre'].text =  f'{nombrelogin}'
+            #MAIL
             miCursor.execute(c_email)
             mail = miCursor.fetchone()
+            mail=str(mail)
+            mail = mail.strip("()").replace("'", "").replace(",", "")
             screen_manager.get_screen('inicio').ids['email'].text = f'{mail}'
+            #TELEFONO
             miCursor.execute(c_tel)
             tel = miCursor.fetchone()
+            tel=str(tel)
+            tel = tel.strip("()").replace("'", "").replace(",", "")
             screen_manager.get_screen('inicio').ids['telefono'].text = f'{tel}'
+            #DIRECCION
+            miCursor.execute(c_direc)
+            dire = miCursor.fetchone()
+            dire=str(dire)
+            dire = dire.strip("()").replace("'", "").replace(",", "")
+            screen_manager.get_screen('inicio').ids['direccion'].text = f'{dire}'
             screen_manager.current = "inicio"
         else:
             self.dialog = MDDialog(
@@ -95,11 +121,19 @@ class LoginApp(MDApp):
     #'FUNCION PARA EL BOTON REGISTRO DE LA PANTALLA REGISTRO Y AGREGADO A LA BASE DE DATOS'
         user = []
         nombre = screen_manager.get_screen('registro').ids['input_name'].text
+        direccion = screen_manager.get_screen('registro').ids['input_direc'].text
+        localidad = screen_manager.get_screen('registro').ids['input_loc'].text
         telefono = screen_manager.get_screen('registro').ids['input_phone'].text
         mail = screen_manager.get_screen('registro').ids['input_email'].text
         password = screen_manager.get_screen('registro').ids['input_password'].text
         password_c = screen_manager.get_screen('registro').ids['input_password_confirmation'].text
-        lista = (nombre,telefono,mail,password)
+        tipo_cuenta = 1
+        tipo_cuenta= int(tipo_cuenta)
+        localidad = str(localidad)
+        busca_loc = f'SELECT id_localidad FROM public."Localidad" WHERE nombre = \'{localidad}\''
+        miCursor.execute(busca_loc)
+        id_localidad = miCursor.fetchone()
+        lista = (nombre,id_localidad,telefono,direccion,mail,password,tipo_cuenta)
         user.append(lista)
         if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}$',mail.lower()):
             long= len(telefono)
@@ -130,7 +164,7 @@ class LoginApp(MDApp):
                     )   
                     self.dialog.open()
                 elif password == password_c:
-                    registro_ejecucion = "INSERT INTO Cliente (id_cliente,Nombre,Telefono,email,password) VALUES (NULL,?,?,?,?)"
+                    registro_ejecucion = 'INSERT INTO public."Clientes" (nombre,id_localidad,telefono,direccion,correo,password,tipo_cuenta) VALUES (%s,%s,%s,%s,%s,%s,%s)'
                     miCursor.executemany(registro_ejecucion,user)
                     miConexion.commit()
                     screen_manager.current = "login"
@@ -193,7 +227,6 @@ class LoginApp(MDApp):
             screen_manager.get_screen('inicio').ids['l_llegada'].text = f'{llegada}'
             screen_manager.get_screen('inicio').ids['l_distancia'].text = f'{DistanciaKM}'
             screen_manager.get_screen('inicio').ids['l_duracion'].text = f'{HorasMinDuracion}'
-            
 
     def inicio(self):
         screen_manager.current="inicio"

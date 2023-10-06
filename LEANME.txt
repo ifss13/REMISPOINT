@@ -1,0 +1,20 @@
+EN ESTE ARCHIVO LES DEJO COMO HAY QUE HACER PARA QUE LES FUNCIONE 
+EL PROGRAMA HECHO CON LA NUEVA BASE DE DATOS
+
+Primero descarguen el programa desde:
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+Instalen solo la version 16, si el instalador pregunta por otra version pongan que no
+
+Cuando instalen les va a preguntar cosas como una contraseña y puertos pongan: "admin" de contraaseña
+y el puerto dejen el 5432
+
+Cuando instalen el programa inician el  pgAdmin4.exe y ahi van a la izquierda donde dice SERVERS, click, van donde dice
+postgresql 16 doble click y les va a pedir la contraseña al entrar les va a aparecer vacio, pero hacen 
+click derecho en postgres16 y ponen CREAR  y BASE DE DATOS, ponganle RemisPoint y guarden
+
+
+Despues de crear apretan click derecho en RemisPoint o el nombre que le hayan puesto 
+y ponen RESTORE o RESTAURAR, apretan la carpetita y buscan el archivo de esta carpeta que se llama
+"RemisPoint.sql" despues van mas abajo donde dice rol o role name y buscan postgres y listo ya pueden usar
+la base de datos.
