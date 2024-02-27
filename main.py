@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.core.window import Window
 import re
+import os
 
 #IMPORTACION KIVYMD
 
@@ -13,9 +14,14 @@ from kivymd.uix.button import MDFlatButton
 
 
 #IMPORTACION BSD
-
 import psycopg2
-miConexion = psycopg2.connect(host="localhost", database="RemisPoint", user="postgres", password="admin", port="5432")
+miConexion = psycopg2.connect(
+        dbname="kqjurbyz",
+        user="kqjurbyz",
+        password="ckOilkZBjplfiLQ11Mr6fZivW2dZDBEe",
+        host="kesavan.db.elephantsql.com",
+        port="5432"
+    )
 miCursor = miConexion.cursor()
 
 #IMPORTACION DE GOOGLE MAPS

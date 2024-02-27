@@ -18,3 +18,6 @@ Despues de crear apretan click derecho en RemisPoint o el nombre que le hayan pu
 y ponen RESTORE o RESTAURAR, apretan la carpetita y buscan el archivo de esta carpeta que se llama
 "RemisPoint.sql" despues van mas abajo donde dice rol o role name y buscan postgres y listo ya pueden usar
 la base de datos.
+
+--------------IMPORTANTE-------- EN PGADMIN4 HAY QUE ENTRAR PRIMMERO A ARCHIVO(FILE) -> PREFERENCIAS -> PATHS -> BINARY PATHS Y EN LAS DOS OPCIONES VACIAS
+DONDE DICE POSTGRES 16 AGREGAR LA CARPETA BIN DE POSTGRES EJ: "C:\Program Files\PostgreSQL\16\bin"
