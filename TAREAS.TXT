@@ -1,0 +1,13 @@
+TAREAS A REALIZAR:
+
+APP DE BASE:
+-Lista de pedidos
+-Asignacion de pedidos
+-Numero de clientes esperando
+-Registros 
+
+
+-APP DE CHOFER
+-Forma de ver hacia donde se tiene que dirigir
+-Forma de ver cuanto cobrar
+-Forma de Cobro
