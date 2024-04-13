@@ -24,68 +24,17 @@ MDScreen:
             pos_hint: {"center_x": .20, "center_y": .85}
 
 
-        MDRectangleFlatIconButton:
-            icon: "circle"
-            text: "Movil 001"
-            theme_icon_color: "Custom"
-            icon_color: "green"
-            theme_text_color: "Custom"
-            text_color: 255,255,255,1
-            line_color: "orange"
-            theme_icon_color: "Custom"
-            pos_hint: {"center_x": .5, "center_y": .6}
-            size_hint: 0.9,0.05
-            halling: "center"
+        MDFlatButton:
+            text: "Solicitar Remis"
+            size_hint: .79, .08
+            pos_hint:{"center_x": .50, "center_y": 0.07}
+            md_bg_color: "orange"
+            on_press: app.remis_confirmar()
         
-        MDRectangleFlatIconButton:
-            icon: "circle"
-            text: "Movil 002"
-            theme_icon_color: "Custom"
-            icon_color: "red"
-            theme_text_color: "Custom"
-            text_color: 255,255,255,1
-            line_color: "orange"
-            theme_icon_color: "Custom"
-            pos_hint: {"center_x": .5, "center_y": .5}
-            size_hint: 0.9,0.05
-            halling: "center"
-        
-        MDRectangleFlatIconButton:
-            icon: "circle"
-            text: "Movil 003"
-            theme_icon_color: "Custom"
-            icon_color: "red"
-            theme_text_color: "Custom"
-            text_color: 255,255,255,1
-            line_color: "orange"
-            theme_icon_color: "Custom"
-            pos_hint: {"center_x": .5, "center_y": .4}
-            size_hint: 0.9,0.05
-            halling: "center"
-
-        MDRectangleFlatIconButton:
-            icon: "circle"
-            text: "Movil 004"
-            theme_icon_color: "Custom"
-            icon_color: "red"
-            theme_text_color: "Custom"
-            text_color: 255,255,255,1
-            line_color: "orange"
-            theme_icon_color: "Custom"
-            pos_hint: {"center_x": .5, "center_y": .3}
-            size_hint: 0.9,0.05
-            halling: "center"
 
         MDLabel:
-            text: "Moviles disponibles:"
+            text: "Esta remiseria puede presentar una demora de:"
             pos_hint: {"center_x": .53, "center_y": .75}
-            text_color: 255,255,255,1
-            halling: "center"
-            font_size: "16sp"
-
-        MDLabel:
-            text: "Verde: Disponible | Rojo: Ocupado"
-            pos_hint: {"center_x": .53, "center_y": .7}
             text_color: 255,255,255,1
             halling: "center"
             font_size: "12sp"
@@ -97,3 +46,24 @@ MDScreen:
             theme_text_color: "Custom"
             text_color: 255,255,255,1
             font_size: "30sp"  
+
+        MDTextField:
+            id: mail
+            hint_text: "Direccion de Salida"
+            helper_text: ""
+            helper_text_mode: "persistent"
+            pos_hint: {"center_x": .5 , "center_y": .62}
+
+            size_hint_x: .85
+            line_color_focus: 0,0,0,1
+
+
+        MDTextField:
+            id: password
+            hint_text: "Direccion de Destino"
+            helper_text: ""
+            helper_text_mode: "persistent"
+            pos_hint: {"center_x": .5 , "center_y": .52}
+            password: True
+            size_hint_x: .85
+            line_color_focus: 0,0,0,1

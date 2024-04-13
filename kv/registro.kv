@@ -110,8 +110,8 @@ MDScreen:
             size_hint: .79, .08
             pos_hint:{"center_x": .50, "center_y": 0.07}
             on_press: 
-                app.nuevo_usuario()
-                root.manager.transition.direction = "left"
+                app.nuevo_usuario(app.miCursor)
+                root.manager.transition.direction = "left"  
 
             canvas.before:
                 Color:

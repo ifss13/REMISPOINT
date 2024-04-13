@@ -60,7 +60,7 @@ MDScreen:
             size_hint: .79, .08
             pos_hint:{"center_x": .50, "center_y": 0.25}
             on_release: 
-                app.completo()
+                app.completo(app.miCursor)
                 root.manager.transition.direction = "left"
     
             canvas.before:
