@@ -1,0 +1,52 @@
+#:kivy 2.2.1
+#: import SlideTransition kivy.uix.screenmanager
+MDScreen:
+    name: 'verificar_remiseria'
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        Image:
+            source: "assets/Remis-Point.png"
+            size_hint: .50, .50
+            pos_hint: {"center_x": .20, "center_y": .85}
+
+        MDLabel:
+            text:"REMIS POINT"
+            pos_hint: {"center_x": .849, "center_y": .849}
+            halling: "center"
+            theme_text_color: "Custom"
+            text_color: 255,255,255,1
+            font_size: "30sp"
+
+        MDLabel:
+            text:"Añade el codigo de verificacion de su remiseria"
+            pos_hint: {"center_x": .52, "center_y": .62}
+            halling: "center"
+            theme_text_color: "Custom"
+            text_color: 255,255,255,1
+            font_size: "20sp"
+
+        MDTextField:
+            id: verificacion
+            hint_text: "Verificar"
+            helper_text: ""
+            helper_text_mode: "persistent"
+            pos_hint: {"center_x": .5 , "center_y": .52}
+            size_hint_x: .85
+            line_color_focus: 0,0,0,1
+
+        MDFlatButton:
+            text: "Verificar"
+            size_hint: .79, .08
+            pos_hint:{"center_x": .50, "center_y": 0.25}
+            on_press: app.verificar_codigo()
+
+
+
+            canvas.before:
+                Color:
+                    rgb: 252/255, 127/255, 65/255, 255
+                RoundedRectangle:
+                    size: self.size
+                    pos:self.pos
+                    radius: [6]

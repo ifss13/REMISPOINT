@@ -9,19 +9,19 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 
 
-#IMPORTACION BSD
+#IMPORTACION DE FUNCIONES
 from screens.login import completo as login_completo
 from screens.conectar_db import conectar_db
 from screens.registro import nuevo_usuario
 from screens.principal import calculo
 from screens.principal import remis_confirmar
+from screens.registro import verificar_codigo
 
 
 #Variables y otros
 Window.size = (300,580)
 
 class LoginApp(MDApp):
-    
     Label = None
     miCursor = None
     def build(self):
@@ -34,11 +34,14 @@ class LoginApp(MDApp):
         screen_manager.add_widget(Builder.load_file("kv/remises.kv"))
         screen_manager.add_widget(Builder.load_file("kv/inicio.kv"))
         screen_manager.add_widget(Builder.load_file("kv/base.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/verificar_remiseria.kv"))
+        screen_manager.add_widget(Builder.load_file("kv/inicio_chofer.kv"))
         return screen_manager
     
     def on_start(self):
         #TRANSICION DE PANTALLA DE INICIO'
         Clock.schedule_once(self.login, 3)
+
 
     def login (self,*args):
         #PANTALLA DE INICIO
@@ -65,7 +68,7 @@ class LoginApp(MDApp):
 
     def nuevo_usuario(self, *args):
         # Call nuevo_usuario function from registro.py
-        nuevo_usuario (screen_manager, self.miCursor, *args)
+        nuevo_usuario (screen_manager, *args)
 
     def calculo(self):
         #'FUNCION PARA EL BOTON DE LA SCREEN INICIO QUE CALCULA LAS DISTANCIAS'
@@ -79,6 +82,11 @@ class LoginApp(MDApp):
 
     def close(self, *args):
         self.dialog.dismiss()
+
+    def verificar_codigo(self):
+        verificar_codigo(screen_manager)
+
+
 
 if __name__ == '__main__':
     app = LoginApp()

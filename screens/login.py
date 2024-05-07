@@ -33,6 +33,7 @@ def completo(app, screen_manager, miCursor, close_dialog_callback, *args):
             c_email = f'SELECT correo FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
             c_tel = f'SELECT Telefono FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
             c_direc = f'SELECT direccion FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
+            c_tipo_cuenta = f'SELECT tipo_cuenta FROM public."Clientes" WHERE correo = \'{email}\' AND password = \'{password}\''
             miCursor.execute(busca)
             if miCursor.fetchone():
                 miCursor.execute(c_nombre)
@@ -59,7 +60,19 @@ def completo(app, screen_manager, miCursor, close_dialog_callback, *args):
                 dire = str(dire)
                 dire = dire.strip("()").replace("'", "").replace(",", "")
                 screen_manager.get_screen('inicio').ids['direccion'].text = f'{dire}'
-                screen_manager.current = "inicio"
+
+                miCursor.execute(c_tipo_cuenta)
+                tipo_cuenta = miCursor.fetchone()
+                tipo_cuenta = str(tipo_cuenta)
+                tipo_cuenta = tipo_cuenta.strip("()").replace("'", "").replace(",", "")
+                tipo_cuenta = int(tipo_cuenta)
+                #print (tipo_cuenta)     
+                #print(type(tipo_cuenta))
+                if tipo_cuenta == 1:
+                    screen_manager.current = "inicio"
+                elif tipo_cuenta == 2:
+                    screen_manager.current = "inicio_chofer"
+    
             else:
                 open_dialog(screen_manager)
         except Exception as e:
