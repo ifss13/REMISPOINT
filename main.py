@@ -9,6 +9,7 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 
 
+
 #IMPORTACION DE FUNCIONES
 from screens.login import completo as login_completo
 from screens.conectar_db import conectar_db
@@ -85,7 +86,6 @@ class LoginApp(MDApp):
 
     def verificar_codigo(self):
         verificar_codigo(screen_manager)
-
 
 
 if __name__ == '__main__':

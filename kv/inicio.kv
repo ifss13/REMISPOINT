@@ -1,5 +1,7 @@
 #:kivy 2.2.1
 #: import SlideTransition kivy.uix.screenmanager
+#:import MapView kivy.garden.mapview.MapView
+#:set google_maps_url 'https://www.google.com/maps/embed/v1/place?key=AIzaSyADCWdmWSSVPDQwFbjx7smd92mgKq7fzFQ&q=-27.48492881358443,-55.11976948045067'
 MDScreen:
     name: 'inicio'
     MDFloatLayout:
@@ -81,116 +83,58 @@ MDScreen:
                 on_release: app.login()
 
             MDLabel:
+                text:"REMIS POINT"
+                pos_hint: {"center_x": .849, "center_y": .849}
+                halling: "center"
+                theme_text_color: "Custom"
+                text_color: 255,255,255,1
+                font_size: "30sp" 
+
+            MDLabel:
                 text:"Atras"
                 font_size: "18sp"
                 pos_hint: {"center_x": .615 , "center_y": .95}
-
             Image:
                 source: "assets/Remis-Point.png"
                 size_hint: .50, .50
                 pos_hint: {"center_x": .20, "center_y": .85}
 
-            MDLabel:
-                text:"Calcular Distancias"
-                pos_hint: {"center_x": .849, "center_y": .849}
-                halling: "center"
-                theme_text_color: "Custom"
-                text_color: 255,255,255,1
-                font_size: "22sp"
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.7
+                pos_hint: {"top": 0.75}
+                MapView:
+                    id: mapview
+                    size_hint_y: 0.7  
+                MDTextField:
+                    id: salida
+                    hint_text: "Ingresa dir. de salida"
+                    helper_text: ""
+                    helper_text_mode: "persistent"
+                    pos_hint: {"center_x": .5 , "center_y": .70}
+                    size_hint_x: .85
+                    line_color_focus: 0,0,0,1
+                MDTextField:
+                    id: llegada
+                    hint_text: "Ingrese Destino"
+                    helper_text: ""
+                    helper_text_mode: "persistent"
+                    pos_hint: {"center_x": .5 , "center_y": .60}
+                    size_hint_x: .85
+                    line_color_focus: 0,0,0,1
+                MDFlatButton:
+                    text: "Calcular"
+                    size_hint: .55, .08
+                    pos_hint:{"center_x": .50, "center_y": 0.45}
+                    on_press: app.calculo()
+                    canvas.before:
+                        Color:
+                            rgb: 252/255, 127/255, 65/255, 255
+                        RoundedRectangle:
+                            size: self.size
+                            pos:self.pos
+                            radius: [6]
             
-            MDTextField:
-                id: salida
-                hint_text: "Ingresa dir. de salida"
-                helper_text: ""
-                helper_text_mode: "persistent"
-                pos_hint: {"center_x": .5 , "center_y": .70}
-
-                size_hint_x: .85
-                line_color_focus: 0,0,0,1
-
-
-            MDTextField:
-                id: llegada
-                hint_text: "Ingrese Destino"
-                helper_text: ""
-                helper_text_mode: "persistent"
-                pos_hint: {"center_x": .5 , "center_y": .60}
-                size_hint_x: .85
-                line_color_focus: 0,0,0,1
-
-            MDFlatButton:
-                text: "Calcular"
-                size_hint: .55, .08
-                pos_hint:{"center_x": .50, "center_y": 0.45}
-                on_press: app.calculo()
-                canvas.before:
-                    Color:
-                        rgb: 252/255, 127/255, 65/255, 255
-                    RoundedRectangle:
-                        size: self.size
-                        pos:self.pos
-                        radius: [6]
-            MDCard:
-                size_hint: 0.8, 0.10
-                pos_hint: {"center_x": .50, "center_y": .35}
-                
-                MDLabel:
-                    text:"Salida"
-                    id: l_salida
-                    font_size: "16sp"
-                    pos_hint: {"center_x": .70, "center_y": .5}
-                
-                MDLabel:
-                    id: l_llegada
-                    text:"Llegada"
-                    font_size: "16sp"
-                    pos_hint: {"center_x": .3, "center_y": .5}
-
-            MDCard:
-                size_hint: 0.8, 0.10
-                pos_hint: {"center_x": .50, "center_y": .25}
-                
-                MDLabel:
-                    text:"Distancia"
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .70, "center_y": .5}
-                
-                MDLabel:
-                    id: l_distancia
-                    text:""
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .3, "center_y": .5}
-            
-            MDCard:
-                size_hint: 0.8, 0.10
-                pos_hint: {"center_x": .50, "center_y": .15}
-                
-                MDLabel:
-                    text:"Tiempo"
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .70, "center_y": .5}
-                
-                MDLabel:
-                    id: l_duracion
-                    text:""
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .3, "center_y": .5}
-            
-            MDCard:
-                size_hint: 0.8, 0.10
-                pos_hint: {"center_x": .50, "center_y": .05}
-                
-                MDLabel:
-                    text:"Precio"
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .70, "center_y": .5}
-                
-                MDLabel:
-                    id: l_precio
-                    text:"$"
-                    font_size: "12sp"
-                    pos_hint: {"center_x": .3, "center_y": .5}
-
         MDBottomNavigationItem:
             name: 'info'
             text: 'Info'

@@ -6,7 +6,7 @@ https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 Instalen solo la version 16, si el instalador pregunta por otra version pongan que no
 
-Cuando instalen les va a preguntar cosas como una contraseña y puertos pongan: "admin" de contraaseña
+Cuando instalen les va a preguntar cosas como una contrasenia y puertos pongan: "admin" de contraseña
 y el puerto dejen el 5432
 
 Cuando instalen el programa inician el  pgAdmin4.exe y ahi van a la izquierda donde dice SERVERS, click, van donde dice
