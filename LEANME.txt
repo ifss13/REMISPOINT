@@ -1,7 +1,12 @@
 EN ESTE ARCHIVO LES DEJO COMO HAY QUE HACER PARA QUE LES FUNCIONE 
 EL PROGRAMA HECHO CON LA NUEVA BASE DE DATOS
 
-La base de Datos se encuentra en un servidor gratuito, los datos de conexion estan en el archivo conectar_db.py en la carpeta REMISPOIN/screens.
+Ya que todas las librerias estan instaladas en el entrono virtual lo unico que vamos a necesitar para ejecutar la app es activar el entorno virtual. La app esta hecha en windows por lo tanto el comando seria:
+
+kivy_venv/Scripts/Activate (con esto deberia abrir la app sin problemas, ejecutando el main.py)
+
+
+La base de Datos se encuentra en un servidor gratuito, los datos de conexion estan en el archivo conectar_db.py en la carpeta REMISPOINT/screens.
 
 Para poder ejecutar el proyecto deberemos instalar:
 
@@ -18,5 +23,3 @@ las funciones para organizar la estructura
 
 Por el momento la base de datos esta alojada en un servicio gratuito llamado ELEPHANTSQL, el servicio gratuito esta disponible hasta el 1 de diciembre de 2024.
 Hay que investigar opciones gratuitas o de costo bajo.
-
-Para activar el entorno virtual: kivy_venv/Scripts/Activate (con esto deberia ejecutar la app sin problemas)
