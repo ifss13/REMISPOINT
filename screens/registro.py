@@ -3,6 +3,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from screens.conectar_db import conectar_db
 
+
 miConexion = conectar_db()
 if miConexion:
     miCursor = miConexion.cursor()

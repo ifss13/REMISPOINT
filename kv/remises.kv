@@ -32,12 +32,14 @@ MDScreen:
             on_press: app.remis_confirmar()
         
 
+
         MDLabel:
-            text: "Esta remiseria puede presentar una demora de:"
+            text: ""
+            id: demora
             pos_hint: {"center_x": .53, "center_y": .75}
             text_color: 255,255,255,1
             halling: "center"
-            font_size: "12sp"
+            font_size: "14sp"
 
         MDLabel:
             text:"REMISERIA X"
@@ -48,7 +50,7 @@ MDScreen:
             font_size: "30sp"  
 
         MDTextField:
-            id: mail
+            id: dir_salida
             hint_text: "Direccion de Salida"
             helper_text: ""
             helper_text_mode: "persistent"
@@ -59,11 +61,10 @@ MDScreen:
 
 
         MDTextField:
-            id: password
+            id: dir_destino
             hint_text: "Direccion de Destino"
             helper_text: ""
             helper_text_mode: "persistent"
             pos_hint: {"center_x": .5 , "center_y": .52}
-            password: True
             size_hint_x: .85
             line_color_focus: 0,0,0,1

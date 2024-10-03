@@ -1,20 +1,22 @@
 EN ESTE ARCHIVO LES DEJO COMO HAY QUE HACER PARA QUE LES FUNCIONE 
 EL PROGRAMA HECHO CON LA NUEVA BASE DE DATOS
 
-Primero descarguen el programa desde:
-https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+La base de Datos se encuentra en un servidor gratuito, los datos de conexion estan en el archivo conectar_db.py en la carpeta REMISPOIN/screens.
 
-Instalen solo la version 16, si el instalador pregunta por otra version pongan que no
+Para poder ejecutar el proyecto deberemos instalar:
 
-Cuando instalen les va a preguntar cosas como una contrasenia y puertos pongan: "admin" de contraseña
-y el puerto dejen el 5432
+Kivy
+KivyMD
+KivyGarden
+Psycopg2
+googlemaps
+requests
 
-Cuando instalen el programa inician el  pgAdmin4.exe y ahi van a la izquierda donde dice SERVERS, click, van donde dice
-postgresql 16 doble click y les va a pedir la contraseña al entrar les va a aparecer vacio, pero hacen 
-click derecho en postgres16 y ponen CREAR  y BASE DE DATOS, ponganle RemisPoint y guarden
+Entre otras librerías, el proyecto esta creado con programacion modular donde cada pantalla .kv tiene su respectivo archivo .py, el main.py solo se encarga de llamar
+las funciones para organizar la estructura
 
 
-Despues de crear apretan click derecho en RemisPoint o el nombre que le hayan puesto 
-y ponen RESTORE o RESTAURAR, apretan la carpetita y buscan el archivo de esta carpeta que se llama
-"RemisPoint.sql" despues van mas abajo donde dice rol o role name y buscan postgres y listo ya pueden usar
-la base de datos.
+Por el momento la base de datos esta alojada en un servicio gratuito llamado ELEPHANTSQL, el servicio gratuito esta disponible hasta el 1 de diciembre de 2024.
+Hay que investigar opciones gratuitas o de costo bajo.
+
+Para activar el entorno virtual: kivy_venv/Scripts/Activate (con esto deberia ejecutar la app sin problemas)

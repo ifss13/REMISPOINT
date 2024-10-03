@@ -1,13 +1,16 @@
 TAREAS A REALIZAR:
 
-APP DE BASE:
+APP DE BASE: (es otra carpeta)
 -Lista de pedidos
 -Asignacion de pedidos
--Numero de clientes esperando
 -Registros 
+-Seguir investigando opciones de Geolocalizacion con python/Kivy
 
 
--APP DE CHOFER
+-APP DE CHOFER(pantalla inicio_chofer.kv)
 -Forma de ver hacia donde se tiene que dirigir
 -Forma de ver cuanto cobrar
 -Forma de Cobro
+
+
+BUSCAR OPCIONES PARA REEMPLAZAR ELEPHANTSQL PARA TENER BASE DE DATOS EN ALGUNA NUBE O SERVIDOR
